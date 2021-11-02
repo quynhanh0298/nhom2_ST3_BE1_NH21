@@ -26,6 +26,7 @@ class Product extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+    //Sear:
     public function search($keyword)
     {
         $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ?");
@@ -36,4 +37,17 @@ class Product extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+    //Them producats:
+    public function getProductByManu($manu)
+    {
+        $sql = self::$connection->prepare("SELECT * 
+        FROM products INNER JOIN manufactures 
+        WHERE products.manu_id = manufactures.manu_id AND manufactures.manu_name = ?");
+        $sql->bind_param("s", $manu);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+    
 }
