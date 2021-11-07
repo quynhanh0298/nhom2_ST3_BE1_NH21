@@ -48,8 +48,8 @@ $product = new Product;
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +84-98433-36-36</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> quynhanh0298@gmai.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					</ul>
 					<ul class="header-links pull-right">
@@ -79,12 +79,7 @@ $product = new Product;
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form method="get" action="result.php">
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
+								<form method="get" action="result.php">									
 									<input class="input" placeholder="Search here" name="keyword">
 									<button type="submit" class="search-btn">Search</button>
 								</form>
@@ -97,7 +92,7 @@ $product = new Product;
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
+<a href="#">
 										<i class="fa fa-heart-o"></i>
 										<span>Your Wishlist</span>
 										<div class="qty">2</div>
@@ -177,12 +172,11 @@ $product = new Product;
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="result.php?id=1">Smartphones</a></li>
+						<li><a href="result.php?id=2">Laptops</a></li>
+						<li><a href="result.php?id=3">Tablet</a></li>
+						<li><a href="result.php?id=4">Smartwatches</a></li>
+						<li><a href="result.php?id=5">Bluetooth Earbuds</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
