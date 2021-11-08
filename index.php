@@ -32,7 +32,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 							<div class="col-md-4 col-xs-6">
 								<div class="shop">
 									<div class="shop-img">
-										<img src="./img/3_samsung-galaxy-tab-s7.jpg" alt="">
+										<img src="./img/2_asus-zenbook.jpg" alt="">
 									</div>
 									<div class="shop-body">
 										<h3>Laptops<br>Collection</h3>
@@ -130,7 +130,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+												<h3 class="product-name"><a href="product.php?id=<?php echo $value ['id'] ?>"><?php echo $value['name'] ?></a></h3>
 												<h4 class="product-price"><?php echo number_format($value['price']) ?> VND</h4>
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
