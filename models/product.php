@@ -38,12 +38,10 @@ class Product extends Db
         return $items; //return an array
     }
     //Them producats:
-    public function getProductByManu($manu)
+    public function getProductByManu($manu_id)
     {
-        $sql = self::$connection->prepare("SELECT * 
-        FROM products INNER JOIN manufactures 
-        WHERE products.manu_id = manufactures.manu_id AND manufactures.manu_name = ?");
-        $sql->bind_param("s", $manu);
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE manu_id = ?");
+        $sql->bind_param("i", $manu_id);
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);

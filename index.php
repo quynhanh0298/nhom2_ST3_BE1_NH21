@@ -202,7 +202,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo $value['price'] ?></h4>
 											<div class="product-btns">
 												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -238,7 +238,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo $value['price'] ?></h4>
 											<div class="product-btns">
 												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -274,7 +274,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo $value['price'] ?></h4>
 											<div class="product-btns">
 												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -310,7 +310,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo $value['price'] ?></h4>
 											<div class="product-btns">
 												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -346,7 +346,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo $value['price'] ?></h4>
 											<div class="product-btns">
 												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
