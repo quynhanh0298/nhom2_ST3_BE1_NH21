@@ -233,7 +233,75 @@
 					</ul>
 				</div>
 				<!-- /store top filter -->
+				<div class="row">
+				<?php
+					if (isset($_GET['manu_id'])) :
+						$manu_id = $_GET['manu_id'];
+						$getProductByManuId = $product->getProductByManuId($manu_id);
+						// hiển thị 3 sản phẩm trên 1 trang
+						$perPage = 3;
+						// Lấy số trang trên thanh địa chỉ
+						if (isset($_GET['page'])) {
+							$page = $_GET['page'];
+						} else {
+							$page = 1;
+						}
+						// Tính tổng số dòng, ví dụ kết quả là 18
+						$total = count($getProductByManuId);
+						// lấy đường dẫn đến file hiện hành (GỌI PHƯƠNG THỨC CỦA BƯỚC 2)
+						$url = $_SERVER['PHP_SELF'] . "?manu_id=" . $manu_id;
+						$get3ProductByManuId = $product->get3ProductByManuId($manu_id, $page, $perPage);
+						foreach ($get3ProductByManuId as $value) :
+					?>
+							<!-- product -->
+							<div class="col-md-4 col-xs-6">
+								<div class="product">
+									<div class="product-img">
+										<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+										<h4 class="product-price"><?php echo number_format($value['price']) ?> VND</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+										<a href="heart.php?id=<?php echo $value['id'] ?>" class="add-to-wishlist"><i class="fa fa-heart-o"></i></a>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+													view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+									<a href="add-cart.php?id=<?php echo $value['id'] ?>" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</a>
+									</div>
+								</div>
+							</div>
+							<!-- /product -->
+						<?php
+						endforeach;
+						?>
+				</div>
+				<!-- /store products -->
+				<!-- store bottom filter -->
+				<div class="row">
+				<div class="store-filter clearfix">
+					<span class="store-qty">Showing 20-100 products</span>
+					<span class="store-qty">Showing 20-100 products</span>
+					<ul class="store-pagination">
+						<?php echo $product->paginate($url, $total, $perPage,$manu_id); ?>
+					</ul>
+				</div>
+				</div>
 				
+				<!-- /store bottom filter -->
+			<?php endif ?>
+
 				<!-- store products -->
 				<div class="row">
 					<!--Tim kim-->
@@ -325,18 +393,7 @@
 				<!-- Hienj thi LapTop-->
 					
 
-				<!-- store bottom filter -->
-				<div class="store-filter clearfix">
-					<span class="store-qty">Showing 20-100 products</span>
-					<ul class="store-pagination">
-						<li class="active">1</li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-					</ul>
-				</div>
-				<!-- /store bottom filter -->
+				
 			</div>
 			<!-- /STORE -->
 		</div>
