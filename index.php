@@ -22,7 +22,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 									</div>
 									<div class="shop-body">
 										<h3>Smartphones<br>Collection</h3>
-										<a href="result.php?id=1" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="result.php?type_id=1" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -36,7 +36,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 									</div>
 									<div class="shop-body">
 										<h3>Laptops<br>Collection</h3>
-										<a href="result.php?id=2" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="result.php?type_id=2" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -49,7 +49,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 									</div>
 									<div class="shop-body">
 										<h3>Tablet<br>Collection</h3>
-										<a href="result.php?id=3" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="result.php?type_id=3" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -63,7 +63,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 									</div>
 									<div class="shop-body">
 										<h3>Smart Watches<br>Collection</h3>
-										<a href="result.php?id=4" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="result.php?type_id=4" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -77,7 +77,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 									</div>
 									<div class="shop-body">
 										<h3>Bluetooth Earbuds<br>Collection</h3>
-										<a href="result.php?id=5" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="result.php?type_id=5" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>

@@ -232,7 +232,9 @@
 						<li><a href="#"><i class="fa fa-th-list"></i></a></li>
 					</ul>
 				</div>
-				<!-- /store top filter -->
+
+
+				<!-- Hiển thị sản phẩm theo Hãng -- THỌ -->
 				<div class="row">
 				<?php
 					if (isset($_GET['manu_id'])) :
@@ -287,24 +289,21 @@
 						endforeach;
 						?>
 				</div>
-				<!-- /store products -->
-				<!-- store bottom filter -->
 				<div class="row">
 				<div class="store-filter clearfix">
 					<span class="store-qty">Showing 20-100 products</span>
 					<span class="store-qty">Showing 20-100 products</span>
 					<ul class="store-pagination">
-						<?php echo $product->paginate($url, $total, $perPage,$manu_id); ?>
+						<?php echo $product->paginate($url, $total, $perPage); ?>
 					</ul>
 				</div>
 				</div>
-				
-				<!-- /store bottom filter -->
 			<?php endif ?>
+				<!-- /Hiển thị sản phẩm theo Hãng -- THỌ -->
 
-				<!-- store products -->
+
+			<!--Tim kim-->
 				<div class="row">
-					<!--Tim kim-->
 					<?php
 					if (isset($_GET['keyword'])){ 
 						$keyword = $_GET['keyword'];
@@ -346,16 +345,31 @@
 					}
 					?>
 				</div>
-				<!-- /store products -->
-				<!--Tim Kiem -->
-					<!-- Hienj thi LapTop-->
-					<?php
-					if (isset($_GET['id'])){ 
-						$id = $_GET['id'];
-						$getProductByTypeid = $product-> getProductByTypeid($id);
-						foreach ($getProductByTypeid as $value) {
+			<!--Tim kim-->	
+
+
+					<!-- Hiển thị sản phẩm theo Loại -- LUẬN-->
+					
+					<div class="row">
+				<?php
+					if (isset($_GET['type_id'])) :
+						$type_id = $_GET['type_id'];
+						$getProductByTypeId = $product->getProductByTypeId($type_id);
+						// hiển thị 3 sản phẩm trên 1 trang
+						$perPage = 3;
+						// Lấy số trang trên thanh địa chỉ
+						if (isset($_GET['page'])) {
+							$page = $_GET['page'];
+						} else {
+							$page = 1;
+						}
+						// Tính tổng số dòng, ví dụ kết quả là 18
+						$total = count($getProductByTypeId);
+						// lấy đường dẫn đến file hiện hành (GỌI PHƯƠNG THỨC CỦA BƯỚC 2)
+						$url = $_SERVER['PHP_SELF'] . "?type_id=" . $type_id;
+						$get3ProductByTypeId = $product->get3ProductByTypeId($type_id, $page, $perPage);
+						foreach ($get3ProductByTypeId as $value):
 					?>
-				<!--Dung khong -->
 							<!-- product -->
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
@@ -385,12 +399,23 @@
 								</div>
 							</div>
 							<!-- /product -->
-					<?php
-						}
-					}
-					?>
+							<?php
+						endforeach;
+						?>
+				</div>
+				<div class="row">
+				<div class="store-filter clearfix">
+					<span class="store-qty">Showing 20-100 products</span>
+					<span class="store-qty">Showing 20-100 products</span>
+					<ul class="store-pagination">
+						<?php echo $product->paginate($url, $total, $perPage); ?>
+					</ul>
+				</div>
+				</div>
+			<?php endif; ?>
+					
 
-				<!-- Hienj thi LapTop-->
+				<!-- Hiển thị sản phẩm theo Loại -- LUẬN-->
 					
 
 				
@@ -402,4 +427,4 @@
 	<!-- /container -->
 </div>
 <!-- /SECTION -->
-<?php include "footer.html" ?>
+<?php include "footer.html"; ?>
