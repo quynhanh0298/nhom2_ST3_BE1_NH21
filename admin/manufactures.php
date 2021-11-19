@@ -6,11 +6,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Products</h1>
+          <h1>Manufactures</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a class="btn btn-primary btn-sm" href="addproduct.php">
+            <a class="btn btn-primary btn-sm" href="addmanufacture.php">
               Add New
             </a>
           </ol>
@@ -28,63 +28,39 @@
         <table class="table table-striped projects">
           <thead>
             <tr>
-              <th style="width: 1%">
-                ID
+              <th style="width: 10%">
+              Manu_id
               </th>
               <th style="width: 20%">
-                Name
+              Manu_name
               </th>
-              <th>
-                Image
-              </th>
-              <th>
-                Price
-              </th>
-              <th>
-                Manufacture
-              </th>
-              <th style="width: 8%">
-                Protype
-              </th>
-              <th style="width: 20%" class="text-center">
+              <th style="width: 10%">
                 Action
               </th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $getAllProducts = $product->getAllProducts();
-            foreach ($getAllProducts as $value) :
+            $getAllManu = $manu->getAllManu();
+            foreach ($getAllManu as $value) :
             ?>
               <tr>
-                <td>
-                  <?php echo $value['id'] ?>
+                <td style="width: 10%">
+                  <?php echo $value['manu_id'] ?>
                 </td>
-                <td>
+                <td style="width: 20%">
                   <a>
-                    <?php echo $value['name'] ?>
+                    <?php echo $value['manu_name'] ?>
                   </a>
                 </td>
-                <td>
-                  <img src="../img/<?php echo $value['pro_image'] ?>" alt="" style="width : 100px">
-
-                </td>
-                <td>
-                  <?php echo $value['price'] ?>
-                </td>
-                <td>
-                  <?php echo $value['manu_name'] ?>
-                </td>
-                <td>
-                  <?php echo $value['type_name'] ?>
-                </td>
-                <td class="project-actions text-center">
-                  <a class="btn btn-info btn-sm" href="editproduct.php">
+              
+                <td class="project-actions text-left" style="width: 10%">
+                  <a class="btn btn-info btn-sm" href="editmanufacture.php">
                     <i class="fas fa-pencil-alt">
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deleteproduct.php">
+                  <a class="btn btn-danger btn-sm" href="deletemanufacture.php">
                     <i class="fas fa-trash">
                     </i>
                     Delete

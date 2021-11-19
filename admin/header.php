@@ -229,7 +229,7 @@ $protye = new Protype;
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="manufactures.php" class="nav-link">
                                 <i class="nav-icon fab fa-apple"></i>
                                 <p>Manufactures</p>
                             </a>
