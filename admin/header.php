@@ -6,7 +6,7 @@ require "models/protype.php";
 require "models/manu.php";
 $product = new Product;
 $manu = new Manufacture;
-$protye = new Protype;
+$protype = new Protype;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,7 +235,7 @@ $protye = new Protype;
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="protypes.php" class="nav-link">
                                 <i class="nav-icon fas fa-mobile-alt"></i>
                                 <p>Protypes</p>
                             </a>
