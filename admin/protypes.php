@@ -41,7 +41,6 @@
           </thead>
           <tbody>
             <?php
-            $getAllProtype = $protype->getAllProtype();
             foreach ($getAllProtype as $value) :
             ?>
               <tr>

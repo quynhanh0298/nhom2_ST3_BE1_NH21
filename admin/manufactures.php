@@ -41,7 +41,6 @@
           </thead>
           <tbody>
             <?php
-            $getAllManu = $manu->getAllManu();
             foreach ($getAllManu as $value) :
             ?>
               <tr>

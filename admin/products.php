@@ -1,4 +1,12 @@
-<?php include "header.php" ?>
+<?php 
+include "header.php";
+if (isset($_POST['submitedit'])) {
+  $product -> editProduct($_POST['id'], $_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_POST['pro_image'], $_POST['description'], $_POST['feature']);
+}
+if (isset($_POST['submitadd'])) {
+  $product -> addProduct($_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_POST['pro_image'], $_POST['description'], $_POST['feature']);
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -79,12 +87,12 @@
                   <?php echo $value['type_name'] ?>
                 </td>
                 <td class="project-actions text-center">
-                  <a class="btn btn-info btn-sm" href="editproduct.php">
+                  <a class="btn btn-info btn-sm" href="editproduct.php?id=<?php echo $value['id'] ?>">
                     <i class="fas fa-pencil-alt">
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deleteproduct.php">
+                  <a class="btn btn-danger btn-sm" href="deleteproduct.php?id=<?php echo $value['id'] ?>">
                     <i class="fas fa-trash">
                     </i>
                     Delete
