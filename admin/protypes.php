@@ -1,4 +1,11 @@
-<?php include "header.php" ?>
+<?php include "header.php";
+if (isset($_POST['submitadd'])) {
+  $protype -> addProtype($_POST['type_name']);
+}
+if (isset($_POST['submitedit'])) {
+  $protype -> editProtype($_POST['type_id'],$_POST['type_name']);
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -41,6 +48,7 @@
           </thead>
           <tbody>
             <?php
+            $getAllProtype = $protype->getAllProtype();
             foreach ($getAllProtype as $value) :
             ?>
               <tr>
@@ -54,12 +62,12 @@
                 </td>
               
                 <td class="project-actions text-left" style="width: 10%">
-                  <a class="btn btn-info btn-sm" href="editprotype.php">
+                  <a class="btn btn-info btn-sm" href="editprotype.php?type_id=<?php echo $value['type_id'] ?>">
                     <i class="fas fa-pencil-alt">
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deleteprtype.php">
+                  <a class="btn btn-danger btn-sm" href="deleteprotype.php?type_id=<?php echo $value['type_id'] ?>">
                     <i class="fas fa-trash">
                     </i>
                     Delete
