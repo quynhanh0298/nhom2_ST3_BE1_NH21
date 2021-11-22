@@ -7,6 +7,5 @@ require "models/manu.php";
 $product = new Product;
 $manu = new Manufacture;
 $protype = new Protype;
-$getAllManu = $manu->getAllManu();
 $getAllProtype = $protype->getAllProtype();
 ?>

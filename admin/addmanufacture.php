@@ -14,25 +14,14 @@
 
     <!-- Main content -->
     <section class="content">
+      <form action="manufactures.php" method="post">
       <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputManu_id">Manu_id</label>
-                <input type="number" id="inputManu_id" class="form-control">
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <div class="col-md-6">
+         <div class="col">
           <div class="card card-secondary">
             <div class="card-body">
               <div class="form-group">
                 <label for="inputManu_name">Manu_name</label>
-                <input type="text" id="inputManu_name" class="form-control">
+                <input type="text" id="inputManu_name" class="form-control" name="Manu_name"required>
               </div>
             </div>
             <!-- /.card-body -->
@@ -43,9 +32,10 @@
       <div class="row">
         <div class="col-12">
           <a href="manufactures.php" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Create new Manufacture" class="btn btn-success float-right">
+          <input type="submit" value="Create new Manufacture" class="btn btn-success float-right" name="submitadd">
         </div>
       </div>
+    </form>
     </section>
     <!-- /.content -->
   </div>

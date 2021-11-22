@@ -1,4 +1,11 @@
-<?php include "header.php" ?>
+<?php include "header.php";
+if (isset($_POST['submitadd'])) {
+  $manu -> addManufacture($_POST['Manu_name']);
+}
+if (isset($_POST['submitedit'])) {
+  $manu -> editManufacture($_POST['manu_id'],$_POST['manu_name']);
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -41,6 +48,7 @@
           </thead>
           <tbody>
             <?php
+            $getAllManu = $manu->getAllManu();
             foreach ($getAllManu as $value) :
             ?>
               <tr>
@@ -54,12 +62,12 @@
                 </td>
               
                 <td class="project-actions text-left" style="width: 10%">
-                  <a class="btn btn-info btn-sm" href="editmanufacture.php">
+                  <a class="btn btn-info btn-sm" href="editmanufacture.php?manu_id=<?php echo $value['manu_id'] ?>">
                     <i class="fas fa-pencil-alt">
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deletemanufacture.php">
+                  <a class="btn btn-danger btn-sm" href="deletemanufacture.php?manu_id=<?php echo $value['manu_id'] ?>">
                     <i class="fas fa-trash">
                     </i>
                     Delete
