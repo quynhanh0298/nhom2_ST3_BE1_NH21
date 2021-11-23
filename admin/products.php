@@ -1,10 +1,16 @@
 <?php 
 include "header.php";
 if (isset($_POST['submitedit'])) {
-  $product -> editProduct($_POST['id'], $_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_POST['pro_image'], $_POST['description'], $_POST['feature']);
+  $product -> editProduct($_POST['id'], $_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
+  $target_dir = "../img/";
+  $target_file = $target_dir . basename($_FILES["pro_image"]["name"]);
+  move_uploaded_file($_FILES["pro_image"]["tmp_name"], $target_file);
 }
 if (isset($_POST['submitadd'])) {
-  $product -> addProduct($_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_POST['pro_image'], $_POST['description'], $_POST['feature']);
+  $product -> addProduct($_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
+  $target_dir = "../img/";
+  $target_file = $target_dir . basename($_FILES["pro_image"]["name"]);
+  move_uploaded_file($_FILES["pro_image"]["tmp_name"], $target_file);
 }
 ?>
 <!-- Content Wrapper. Contains page content -->

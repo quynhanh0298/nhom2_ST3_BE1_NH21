@@ -24,24 +24,31 @@ class Product extends Db
     }
     public function editProduct($id, $name, $manu_id, $type_id, $price, $pro_image, $description, $feature)
     {
-        $sql = self::$connection->prepare("UPDATE products 
-        SET name = ?, manu_id = ?, type_id = ?, price = ?, pro_image = ?, description = ?, feature = ?
-        WHERE id = ?");
-        $sql->bind_param("siiissii", $name, $manu_id, $type_id, $price, $pro_image, $description, $feature, $id);
-        $sql->execute(); //return an object
+        if ($pro_image == "") {
+            $sql = self::$connection->prepare("UPDATE products 
+            SET name = ?, manu_id = ?, type_id = ?, price = ?, description = ?, feature = ?
+            WHERE id = ?");
+            $sql->bind_param("siiisii", $name, $manu_id, $type_id, $price, $description, $feature, $id);
+        } else {
+            $sql = self::$connection->prepare("UPDATE products 
+            SET name = ?, manu_id = ?, type_id = ?, price = ?, pro_image = ?, description = ?, feature = ?
+            WHERE id = ?");
+            $sql->bind_param("siiissii", $name, $manu_id, $type_id, $price, $pro_image, $description, $feature, $id);
+        }
+        return $sql->execute(); //return an object
     }
     public function addProduct($name, $manu_id, $type_id, $price, $pro_image, $description, $feature)
     {
         $sql = self::$connection->prepare("INSERT INTO products(name, manu_id, type_id, price, pro_image, description, feature) 
         VALUES(?,?,?,?,?,?,?)");
         $sql->bind_param("siiissi", $name, $manu_id, $type_id, $price, $pro_image, $description, $feature);
-        $sql->execute(); //return an object
+        return $sql->execute(); //return an object
     }
     public function deleteProduct($id)
     {
         $sql = self::$connection->prepare("DELETE FROM products WHERE id = ?");
         $sql->bind_param("i", $id);
-        $sql->execute(); //return an object
+        return $sql->execute(); //return an object
     }
     public function get10NewestProducts()
     {
@@ -72,26 +79,26 @@ class Product extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-     //Them San Pham:
-     public function getProductByTypeid($type_id)
-     {
-         $sql = self::$connection->prepare("SELECT *FROM products WHERE type_id = ?");
-         $sql->bind_param("i", $type_id);
-         $sql->execute(); //return an object
-         $items = array();
-         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-         return $items; //return an array
-     }
-     public function getFeaturedProducts($type_id)
-     {
-         $sql = self::$connection->prepare("SELECT *FROM products WHERE type_id = ? AND feature = 1");
-         $sql->bind_param("i", $type_id);
-         $sql->execute(); //return an object
-         $items = array();
-         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-         return $items; //return an array
-     }
-     public function getProductByManuId($manu_id)
+    //Them San Pham:
+    public function getProductByTypeid($type_id)
+    {
+        $sql = self::$connection->prepare("SELECT *FROM products WHERE type_id = ?");
+        $sql->bind_param("i", $type_id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+    public function getFeaturedProducts($type_id)
+    {
+        $sql = self::$connection->prepare("SELECT *FROM products WHERE type_id = ? AND feature = 1");
+        $sql->bind_param("i", $type_id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+    public function getProductByManuId($manu_id)
     {
         $sql = self::$connection->prepare("SELECT * FROM products WHERE manu_id = ?");
         $sql->bind_param("i", $manu_id);
@@ -126,12 +133,11 @@ class Product extends Db
     }
     function paginate($url, $total, $perPage)
     {
-        $totalLinks = ceil($total/$perPage);
- 	    $link ="";
-    	for($j=1; $j <= $totalLinks ; $j++)
-     	{
-      		$link = $link."<li><a href='$url&page=$j'> $j </a></li>";
-     	}
-     	return $link;
+        $totalLinks = ceil($total / $perPage);
+        $link = "";
+        for ($j = 1; $j <= $totalLinks; $j++) {
+            $link = $link . "<li><a href='$url&page=$j'> $j </a></li>";
+        }
+        return $link;
     }
 }

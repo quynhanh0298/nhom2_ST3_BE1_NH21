@@ -14,7 +14,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <form action="products.php" method="post">
+    <form action="products.php" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
@@ -24,12 +24,28 @@
                 <input type="text" id="inputName" class="form-control" name="name" required>
               </div>
               <div class="form-group">
-                <label for="inputManu_id">Manu_id</label>
-                <input type="number" id="inputManu_id" class="form-control" name="manu_id" required>
+                <label for="inputManu_name">Manufacture</label>
+                <select id="inputManu_name" class="form-control custom-select" name="manu_id" required>
+                  <option selected disabled>Select one</option>
+                  <?php
+                  $getAllManu = $manu->getAllManu();
+                  foreach ($getAllManu as $value) :
+                  ?>
+                    <option value=<?php echo $value['manu_id'] ?>><?php echo $value['manu_name'] ?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
               <div class="form-group">
-                <label for="inputType_id">Type_id</label>
-                <input type="number" id="inputType_id" class="form-control" name="type_id" required>
+                <label for="inputProtype">Protype</label>
+                <select id="inputProtype" class="form-control custom-select" name="type_id" required>
+                  <option selected disabled>Select one</option>
+                  <?php
+                  $getAllProtype = $protype->getAllProtype();
+                  foreach ($getAllProtype as $value) :
+                  ?>
+                    <option value=<?php echo $value['type_id'] ?>><?php echo $value['type_name'] ?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
               <div class="form-group">
                 <label for="inputPrice">Price</label>
@@ -45,7 +61,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="inputPro_image">Pro_image</label>
-                <input type="text" id="inputPro_image" class="form-control" name="pro_image" required>
+                <input type="file" id="inputPro_image" class="form-control" name="pro_image" required>
               </div>
               <div class="form-group">
                 <label for="inputDescription">Description</label>
