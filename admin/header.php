@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="dist/css/style.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -208,7 +209,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="./index.php" class="nav-link">
+                            <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>Dashboard</p>
                             </a>

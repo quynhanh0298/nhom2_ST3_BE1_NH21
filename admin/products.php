@@ -1,13 +1,13 @@
-<?php 
+<?php
 include "header.php";
 if (isset($_POST['submitedit'])) {
-  $product -> editProduct($_POST['id'], $_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
+  $product->editProduct($_POST['id'], $_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
   $target_dir = "../img/";
   $target_file = $target_dir . basename($_FILES["pro_image"]["name"]);
   move_uploaded_file($_FILES["pro_image"]["tmp_name"], $target_file);
 }
 if (isset($_POST['submitadd'])) {
-  $product -> addProduct($_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
+  $product->addProduct($_POST['name'], $_POST['manu_id'], $_POST['type_id'], $_POST['price'], $_FILES['pro_image']['name'], $_POST['description'], $_POST['feature']);
   $target_dir = "../img/";
   $target_file = $target_dir . basename($_FILES["pro_image"]["name"]);
   move_uploaded_file($_FILES["pro_image"]["tmp_name"], $target_file);
@@ -68,7 +68,20 @@ if (isset($_POST['submitadd'])) {
           <tbody>
             <?php
             $getAllProducts = $product->getAllProducts();
-            foreach ($getAllProducts as $value) :
+            // hiển thị 5 sản phẩm trên 1 trang
+            $perPage = 5;
+            // Lấy số trang trên thanh địa chỉ
+            if (isset($_GET['page'])) {
+              $page = $_GET['page'];
+            } else {
+              $page = 1;
+            }
+            // Tính tổng số dòng, ví dụ kết quả là 18
+            $total = count($getAllProducts);
+            // lấy đường dẫn đến file hiện hành (GỌI PHƯƠNG THỨC CỦA BƯỚC 2)
+            $url = $_SERVER['PHP_SELF'];
+            $get5Product = $product->get5Product($page, $perPage);
+            foreach ($get5Product as $value) :
             ?>
               <tr>
                 <td>
@@ -108,6 +121,11 @@ if (isset($_POST['submitadd'])) {
             <?php endforeach ?>
           </tbody>
         </table>
+        <div class="store-filter clearfix">
+          <ul class="store-pagination">
+            <?php echo $product->paginate($url, $total, $perPage); ?>
+          </ul>
+        </div>
       </div>
       <!-- /.card-body -->
     </div>

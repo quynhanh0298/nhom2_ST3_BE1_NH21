@@ -57,6 +57,10 @@
                       <?php endforeach ?>
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="inputPrice">Price</label>
+                    <input type="number" id="inputPrice" value="<?php echo $value['price'] ?>" class="form-control" name="price" required>
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -66,13 +70,21 @@
               <div class="card card-secondary">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputPrice">Price</label>
-                    <input type="number" id="inputPrice" value="<?php echo $value['price'] ?>" class="form-control" name="price" required>
-                  </div>
-                  <div class="form-group">
                     <label for="inputPro_image">Pro_image</label>
                     <input type="file" id="inputPro_image" class="form-control" name="pro_image">
+                    <br>
+                    <img id="hinh" src="../img/<?php echo $value['pro_image'] ?>" alt="" style="width:100px">
                   </div>
+                  <script>
+                    const inputPro_image = document.querySelector('#inputPro_image');
+                    const hinh = document.querySelector('#hinh');
+                    inputPro_image.onchange = evt => {
+                      const [file] = inputPro_image.files
+                      if (file) {
+                        hinh.src = URL.createObjectURL(file)
+                      }
+                    }
+                  </script>
                   <div class="form-group">
                     <label for="inputDescription">Description</label>
                     <textarea id="inputDescription" class="form-control" rows="4" name="description" required><?php echo $value['description'] ?></textarea>

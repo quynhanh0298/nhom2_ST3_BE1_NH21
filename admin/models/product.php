@@ -107,25 +107,17 @@ class Product extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-    public function get3ProductByManuId($manu_id, $page, $perPage)
+    public function get5Product($page, $perPage)
     {
         // Tính số thứ tự trang bắt đầu
         $firstLink = ($page - 1) * $perPage;
-        $sql = self::$connection->prepare("SELECT * FROM products
-        WHERE manu_id = ? LIMIT ?, ?");
-        $sql->bind_param("iii", $manu_id, $firstLink, $perPage);
-        $sql->execute(); //return an object
-        $items = array();
-        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $items; //return an array
-    }
-    public function get3ProductByTypeId($type_id, $page, $perPage)
-    {
-        // Tính số thứ tự trang bắt đầu
-        $firstLink = ($page - 1) * $perPage;
-        $sql = self::$connection->prepare("SELECT * FROM products
-        WHERE type_id = ? LIMIT ?, ?");
-        $sql->bind_param("iii", $type_id, $firstLink, $perPage);
+        $sql = self::$connection->prepare("SELECT *
+        FROM products, manufactures, protypes
+        WHERE products.manu_id = manufactures.manu_id
+        AND products.type_id = protypes.type_id
+        ORDER BY id DESC
+        LIMIT ?, ?");
+        $sql->bind_param("ii", $firstLink, $perPage);
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -135,9 +127,10 @@ class Product extends Db
     {
         $totalLinks = ceil($total / $perPage);
         $link = "";
-        for ($j = 1; $j <= $totalLinks; $j++) {
-            $link = $link . "<li><a href='$url&page=$j'> $j </a></li>";
-        }
+        for($j=1; $j <= $totalLinks ; $j++)
+     	{
+      		$link = $link . "<li><a href='$url?page=$j'> $j </a></li>";
+     	}
         return $link;
     }
 }
