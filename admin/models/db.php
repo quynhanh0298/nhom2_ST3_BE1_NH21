@@ -1,4 +1,16 @@
 <?php
+include "user.php";
+$user = new User;
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('location:../login/indexlogin.php');
+}
+else{
+    $getUser = $user -> getUserByUsername($_SESSION['user']);
+        if ($getUser[0]['role_id'] == 2) {
+            header('location:../login/indexlogin.php');
+        }
+}
 class Db
 {
     public static $connection;

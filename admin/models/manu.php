@@ -22,6 +22,20 @@ class Manufacture extends Db{
         $sql->bind_param("si",$manu_name, $manu_id);
         $sql->execute(); //return an object
     }
+    public function checkCanDelete($manu_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM products
+        WHERE manu_id = ?");
+        $sql->bind_param("i", $manu_id);
+        $sql->execute(); //return an object
+        $items = $sql->get_result()->num_rows;
+        if ($items == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     public function deleteManufacture($manu_id)
     {
         $sql = self::$connection->prepare("DELETE FROM manufactures WHERE manu_id = ?");

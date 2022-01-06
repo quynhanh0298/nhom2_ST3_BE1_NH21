@@ -41,7 +41,7 @@ class User extends Db{
         return $items; //return an array
     }
     public function getAllUser(){
-        $sql = self::$connection->prepare("SELECT * FROM users");
+        $sql = self::$connection->prepare("SELECT * FROM users ORDER BY user_id DESC");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);

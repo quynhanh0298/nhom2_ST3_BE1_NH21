@@ -67,14 +67,41 @@ if (isset($_POST['submitedit'])) {
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deleteprotype.php?type_id=<?php echo $value['type_id'] ?>">
-                    <i class="fas fa-trash">
-                    </i>
-                    Delete
-                  </a>
+                  <?php
+                  if ($protype->checkCanDelete($value['type_id'])) { ?>
+                    <a id="del" class="btn btn-danger btn-sm" href="#">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+                  <?php
+                  } else {
+                  ?>
+                    <a id="del" class="btn btn-danger btn-sm" href="">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+                  <?php
+                  }
+                  ?>
                 </td>
               </tr>
             <?php endforeach ?>
+            <script>
+              const deltype = document.querySelectorAll('#del');
+              deltype.forEach((item) => {
+                item.onclick = () => {
+                  if (item.getAttribute("href") == "#") {
+                    alert("Delete Succesfully!");
+                    item.setAttribute("href", "deleteprotype.php?type_id=<?php echo $value['type_id'] ?>")
+                  } else {
+                    alert("Cannot Delete!");
+                  }
+                }
+              })
+            </script>
+          </tbody>
           </tbody>
         </table>
       </div>

@@ -1,12 +1,20 @@
 <?php
+session_start();
 require "config.php";
 require "models/db.php";
 require "models/product.php";
 require "models/manu.php";
+require "models/user.php";
+require "models/paymethod.php";
+require "models/cart.php";
+require "models/cartdetail.php";
+$cartdetail = new CartDetail;
+$cart = new Cart;
 $product = new Product();
 $manu = new Manufacture;
+$user = new User;
+$paymentmethod = new PaymentMethod;
 $getAllManu = $manu->getAllManu();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +25,7 @@ $getAllManu = $manu->getAllManu();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>Electro - HTML Ecommerce Template</title>
+	<title>Nhom 2 - Store</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -56,12 +64,25 @@ $getAllManu = $manu->getAllManu();
 				<ul class="header-links pull-left">
 					<li><a href="#"><i class="fa fa-phone"></i> +84-98433-36-36</a></li>
 					<li><a href="#"><i class="fa fa-envelope-o"></i> quynhanh0298@gmai.com</a></li>
-					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					<li><a href="map.php"><i class="fa fa-map-marker"></i> 53 Vo Van Ngan</a></li>
 				</ul>
-				<ul class="header-links pull-right">
-					<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-					<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-				</ul>
+				<?php
+				if (isset($_SESSION['user'])) { ?>
+					<ul class="header-links pull-right">
+						<li><a href="indexeditprofile.php"> Edit Profile</a></li>
+						<li><a href="yourorder.php"> Your Orders</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> Welcome <?php echo $_SESSION['user'] ?></a></li>
+						<li><a href="./login/logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+					</ul>
+				<?php
+				} else { ?>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+						<li><a href="./login/indexlogin.php"><i class="fa fa-user-o"></i> Login</a></li>
+					</ul>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		<!-- /TOP HEADER -->
@@ -98,54 +119,54 @@ $getAllManu = $manu->getAllManu();
 						<div class="header-ctn">
 							<!-- Wishlist -->
 							<div>
-								<a href="#">
-									<i class="fa fa-heart-o"></i>
-									<span>Your Wishlist</span>
-									<div class="qty">2</div>
-								</a>
+								<?php
+								if (isset($_SESSION['user'])) { ?>
+									<a href="wishlist.php">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<?php if (isset($_SESSION['wishlist']['qty'])) { ?>
+											<div class="qty"><?php echo $_SESSION['wishlist']['qty'] ?></div>
+										<?php } else { ?>
+											<div class="qty">0</div>
+										<?php } ?>
+									</a>
+								<?php
+								} else { ?>
+									<a href="./login/indexlogin.php">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<div class="qty">0</div>
+									</a>
+								<?php
+								}
+								?>
+
 							</div>
 							<!-- /Wishlist -->
 
 							<!-- Cart -->
-							<div class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Your Cart</span>
-									<div class="qty">3</div>
-								</a>
-								<div class="cart-dropdown">
-									<div class="cart-list">
-										<div class="product-widget">
-											<div class="product-img">
-												<img src="./img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-											</div>
-											<button class="delete"><i class="fa fa-close"></i></button>
-										</div>
-
-										<div class="product-widget">
-											<div class="product-img">
-												<img src="./img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-											</div>
-											<button class="delete"><i class="fa fa-close"></i></button>
-										</div>
-									</div>
-									<div class="cart-summary">
-										<small>3 Item(s) selected</small>
-										<h5>SUBTOTAL: $2940.00</h5>
-									</div>
-									<div class="cart-btns">
-										<a href="#">View Cart</a>
-										<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-									</div>
-								</div>
+							<div>
+								<?php
+								if (isset($_SESSION['user'])) { ?>
+									<a href="cart.php">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your Cart</span>
+										<?php if (isset($_SESSION['cart']['qty'])) { ?>
+											<div class="qty"><?php echo $_SESSION['cart']['qty'] ?></div>
+										<?php } else { ?>
+											<div class="qty">0</div>
+										<?php } ?>
+									</a>
+								<?php
+								} else { ?>
+									<a href="./login/indexlogin.php">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your Cart</span>
+										<div class="qty">0</div>
+									</a>
+								<?php
+								}
+								?>
 							</div>
 							<!-- /Cart -->
 
@@ -176,7 +197,7 @@ $getAllManu = $manu->getAllManu();
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					<?php
 					foreach ($getAllManu as $value) :
 					?>

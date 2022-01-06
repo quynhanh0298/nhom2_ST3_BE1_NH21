@@ -9,10 +9,17 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     if ($user->checkLogin($username, $password)) {
         $_SESSION['user'] = $username;
-        header('location:../admin/dashboard.php');
+        $getUser = $user -> getUser($username, $password);
+        $_SESSION['user_id'] = $getUser[0]['user_id'];
+        if ($getUser[0]['role_id'] == 1) {
+            header('location:../admin/dashboard.php');
+        }
+        else {
+            header('location:../index.php');
+        }
     }
     else {
-        header('location:index.php');
+        header('location:indexlogin.php');
     }
 }
 ?>

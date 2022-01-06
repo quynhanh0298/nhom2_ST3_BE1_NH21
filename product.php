@@ -50,7 +50,7 @@
                         <h2 class="product-name"><?php echo $getProductById[0]['name'] ?></h2>
 
                         <div>
-                            <h3 class="product-price"><?php echo $getProductById[0]['price'] ?></h3>
+                            <h3 class="product-price"><?php echo number_format($getProductById[0]['price']) ?></h3>
                         </div>
                         <p></p>
                         <div class="product-options">
@@ -353,7 +353,6 @@
                                     $getProductByManu = $product->getProductByManu($getProductById[0]['manu_id']);
                                     foreach ($getProductByManu as $value) {
                                 ?>
-
                                         <div class="product">
                                             <div class="product-img">
                                                 <img src="./img/<?php echo $value['pro_image'] ?>" alt="">
@@ -361,7 +360,7 @@
                                             <div class="product-body">
                                                 <p class="product-category">Category</p>
                                                 <h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-                                                <h4 class="product-price"><?php echo $value['price'] ?></h4>
+                                                <h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
                                                 <div class="product-rating">
                                                 </div>
                                                 <div class="product-btns">

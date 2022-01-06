@@ -1,9 +1,9 @@
 <?php include "header.php";
 if (isset($_POST['submitadd'])) {
-  $manu -> addManufacture($_POST['Manu_name']);
+  $manu->addManufacture($_POST['Manu_name']);
 }
 if (isset($_POST['submitedit'])) {
-  $manu -> editManufacture($_POST['manu_id'],$_POST['manu_name']);
+  $manu->editManufacture($_POST['manu_id'], $_POST['manu_name']);
 }
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -36,10 +36,10 @@ if (isset($_POST['submitedit'])) {
           <thead>
             <tr>
               <th style="width: 10%">
-              Manu_id
+                Manu_id
               </th>
               <th style="width: 20%">
-              Manu_name
+                Manu_name
               </th>
               <th style="width: 10%">
                 Action
@@ -60,21 +60,46 @@ if (isset($_POST['submitedit'])) {
                     <?php echo $value['manu_name'] ?>
                   </a>
                 </td>
-              
                 <td class="project-actions text-left" style="width: 10%">
                   <a class="btn btn-info btn-sm" href="editmanufacture.php?manu_id=<?php echo $value['manu_id'] ?>">
                     <i class="fas fa-pencil-alt">
                     </i>
                     Edit
                   </a>
-                  <a class="btn btn-danger btn-sm" href="deletemanufacture.php?manu_id=<?php echo $value['manu_id'] ?>">
-                    <i class="fas fa-trash">
-                    </i>
-                    Delete
-                  </a>
+                  <?php
+                  if ($manu->checkCanDelete($value['manu_id'])) { ?>
+                    <a id="delete" class="btn btn-danger btn-sm" href="#">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+                  <?php
+                  } else {
+                  ?>
+                    <a id="delete" class="btn btn-danger btn-sm" href="">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+                  <?php
+                  }
+                  ?>
                 </td>
               </tr>
             <?php endforeach ?>
+            <script>
+              const del = document.querySelectorAll('#delete');
+              del.forEach((item) => {
+                item.onclick = () => {
+                  if (item.getAttribute("href") == "#") {
+                    alert("Delete Succesfully!");
+                    item.setAttribute("href", "deletemanufacture.php?manu_id=<?php echo $value['manu_id'] ?>")
+                  } else {
+                    alert("Cannot Delete!");
+                  }
+                }
+              })
+            </script>
           </tbody>
         </table>
       </div>

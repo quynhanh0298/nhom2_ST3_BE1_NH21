@@ -12,7 +12,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 			<div class="row">
 				<div class="products-tabs">
 					<!-- tab -->
-					<div id="tab1" class="tab-pane active">
+					<div id="tab11" class="tab-pane active">
 						<div class="products-slick" data-nav="#slick-nav-0">
 							<!-- shop -->
 							<div class="col-md-4 col-xs-6">
@@ -104,14 +104,6 @@ $get10NewestProducts = $product->get10NewestProducts();
 			<div class="col-md-12">
 				<div class="section-title">
 					<h3 class="title">New Products</h3>
-					<div class="section-nav">
-						<ul class="section-tab-nav tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-							<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-							<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-							<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 			<!-- /section title -->
@@ -121,7 +113,7 @@ $get10NewestProducts = $product->get10NewestProducts();
 				<div class="row">
 					<div class="products-tabs">
 						<!-- tab -->
-						<div id="tab1" class="tab-pane active">
+						<div id="tab" class="tab-pane active">
 							<div class="products-slick" data-nav="#slick-nav-1">
 								<?php foreach ($get10NewestProducts as $value) : ?>
 									<!-- product -->
@@ -133,15 +125,33 @@ $get10NewestProducts = $product->get10NewestProducts();
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
 											<h4 class="product-price"><?php echo number_format($value['price']) ?> VND</h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 									<!-- /product -->
 								<?php endforeach ?>
@@ -203,16 +213,34 @@ $get10NewestProducts = $product->get10NewestProducts();
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-											<h4 class="product-price"><?php echo $value['price'] ?></h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 								<?php
 								}
@@ -239,16 +267,34 @@ $get10NewestProducts = $product->get10NewestProducts();
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-											<h4 class="product-price"><?php echo $value['price'] ?></h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 								<?php
 								}
@@ -275,16 +321,34 @@ $get10NewestProducts = $product->get10NewestProducts();
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-											<h4 class="product-price"><?php echo $value['price'] ?></h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 								<?php
 								}
@@ -311,16 +375,34 @@ $get10NewestProducts = $product->get10NewestProducts();
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-											<h4 class="product-price"><?php echo $value['price'] ?></h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 								<?php
 								}
@@ -347,16 +429,34 @@ $get10NewestProducts = $product->get10NewestProducts();
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h3>
-											<h4 class="product-price"><?php echo $value['price'] ?></h4>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+											<?php
+											if (isset($_SESSION['user'])) { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="addwishlist.php?id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											} else { ?>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><a href="./login/indexlogin.php"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+												</div>
+											<?php
+											}
+											?>
+										</div>
+										<?php
+										if (isset($_SESSION['user'])) { ?>
+											<div class="add-to-cart">
+												<a href="addcart.php?id=<?php echo $value['id'] ?>"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										<?php
+										} else { ?>
+											<div class="add-to-cart">
+												<a href="./login/indexlogin.php"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+											</div>
+										<?php
+										}
+										?>
 									</div>
 								<?php
 								}
